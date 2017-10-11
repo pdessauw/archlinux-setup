@@ -1,10 +1,16 @@
 #!/bin/bash
 #
+BOOT_SIZE="250MiB"
+SWAP_SIZE="4GiB"
 
 timedatectl set-ntp true
 # TODO verify ntp
 # FIXME configure partition size
-parted -s /dev/sda mklabel msdos mkpart primary ext4 1MiB 250MiB set 1 boot on mkpart primary linux-swap 250MiB 4GiB mkpart primary ext4 4GiB 100%
+parted -s /dev/sda mklabel msdos mkpart primary ext4 1MiB ${BOOT_SIZE} \
+  set 1 boot on \
+  mkpart primary linux-swap ${BOOT_SIZE} ${SWAP_SIZE} \
+  mkpart primary ext4 ${SWAP_SIZE} 100%
+  
 mkfs.ext4 /dev/sda1
 mkswap /dev/sda2
 mkfs.ext4 /dev/sda3
