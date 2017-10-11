@@ -11,6 +11,11 @@ Bunch of scripts and instructions to properly setup an Archlinux box.
 ```bash
 $ cd /tmp
 $ curl -L -O https://bitbucket.org/pdessauw/archlinux-install/raw/master/prepare.sh -u pdessauw
+```
+
+Edit the script parameters to your liking, using `vi prepare.sh`.
+
+```bash
 $ chmod +x prepare.sh
 $ ./prepare.sh
 ```
@@ -25,4 +30,3 @@ $ cd /root
 $ git clone https://bitbucket.org/pdessauw/archlinux-install
 $ ./install.sh
 ```
-
