@@ -1,16 +1,12 @@
 #!/bin/bash
 #
 # ===== Edit the following values =====
+HOSTNAME=""
 MAIN_USER="pnd"
 
 
 # ==== DO NOT EDIT  PAST THIS LINE ====
 # -------------------------------------
-# Configure swap
-FSTAB="/etc/fstab"
-SWAP_UUID=`lsblk -no UUID /dev/sda2`
-echo "# Swap partition" >> ${FSTAB}
-echo -e "UUID=${SWAP_UUID} none swap defaults 0 0\n" >> ${FSTAB}
 
 # Locale generation
 echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
@@ -18,7 +14,6 @@ locale-gen
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
 
 # Hostname generation
-HOSTNAME=""
 echo "${HOSTNAME}" > /etc/hostname
 
 # Install bootloader
@@ -29,7 +24,7 @@ syslinux-install_update -i -a -m
 BOOT_FILE="/boot/syslinux/syslinux.cfg"
 BOOT_FILE_ORIG="${BOOT_FILE}.orig"
 cp ${BOOT_FILE} ${BOOT_FILE_ORIG}
-cat ${BOOT_FILE_ORIG} | perl -pe "s;TIMEOUT=[0-9]+;TIMEOUT=25;" > ${BOOT_FILE}
+cat ${BOOT_FILE_ORIG} | perl -pe "s;TIMEOUT [0-9]+;TIMEOUT 25;" > ${BOOT_FILE}
 
 # Enable dhcpcd on net interface
 ETH="enp0s3"
@@ -48,6 +43,10 @@ VBOX_PKG="virtualbox-guest-modules-arch virtualbox-guest-utils"
 pacman -S --noconfirm ${VBOX_PKG}
 modprobe -a vboxguest vboxsf vboxvideo
 
+# Install additional packages
+pacman -S --noconfirm vim
+
+
 # Installing sudo
 pacman -S --noconfirm sudo
 visudo
@@ -60,5 +59,9 @@ passwd
 useradd -m -g users -G wheel -s /bin/zsh ${MAIN_USER}
 echo "Please enter a password for ${MAIN_USER}"
 passwd ${MAIN_USER}
-echo "exec startxfce4" >> ~/.xinitrc
+echo "exec startxfce4" >> /home/${MAIN_USER}/.xinitrc
+
+cp ./xfce4 /home/${MAIN_USER}/
+cat ./aliases.txt >> /root/.bashrc
+cat ./aliases.txt >> /home/${MAIN_USER}/.zshrc
 
