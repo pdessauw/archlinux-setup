@@ -1,8 +1,8 @@
 #!/bin/bash
 #
 # ===== Edit the following values =====
-HOSTNAME=""
-MAIN_USER="pnd"
+HOSTNAME="linux"
+MAIN_USER="user"
 
 
 # ==== DO NOT EDIT  PAST THIS LINE ====
@@ -46,7 +46,6 @@ modprobe -a vboxguest vboxsf vboxvideo
 # Install additional packages
 pacman -S --noconfirm vim
 
-
 # Installing sudo
 pacman -S --noconfirm sudo
 visudo
@@ -61,7 +60,9 @@ echo "Please enter a password for ${MAIN_USER}"
 passwd ${MAIN_USER}
 echo "exec startxfce4" >> /home/${MAIN_USER}/.xinitrc
 
-cp ./xfce4 /home/${MAIN_USER}/
+CONFIG_DIR="/home/${MAIN_USER}/.config"
+mkdir -p ${CONFIG_DIR}
+cp -r ./xfce4 ${CONFIG_DIR}
 cat ./aliases.txt >> /root/.bashrc
 cat ./aliases.txt >> /home/${MAIN_USER}/.zshrc
 
