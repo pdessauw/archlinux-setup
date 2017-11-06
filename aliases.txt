@@ -1,1 +1,2 @@
-alias vi=vim
+alias sudo='sudo '
+alias vi='vim'
