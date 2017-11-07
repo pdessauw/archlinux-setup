@@ -21,10 +21,7 @@ mkdir /mnt/boot
 mount /dev/sda1 /mnt/boot
 
 pacstrap /mnt base
-genfstab -U /mnt >> /etc/fstab
-
-# Make it work if you do not switch directory
-#cp -r /path/to/git/repo /mnt/root/
+genfstab -U /mnt >> /mnt/etc/fstab
 
 echo "Configuration finished. Please run 'arch-chroot /mnt' to continue the installation."
 

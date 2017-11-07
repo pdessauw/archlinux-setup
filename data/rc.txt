@@ -1,0 +1,7 @@
+# Main vars
+export VISUAL=vim
+export EDITOR=$VISUAL
+
+# Aliases
+alias sudo='sudo '
+alias vi='vim'
