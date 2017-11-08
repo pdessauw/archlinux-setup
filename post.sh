@@ -27,5 +27,5 @@ cp ~/.zshrc ./zshrc
 cat ./zshrc | perl -pe 's;(ZSH_THEME=).+$;\1"agnoster";g' > ~/.zshrc
 rm ./zshrc
 
-cat rc.txt >> ~/.zshrc
+cat data/rc.txt >> ~/.zshrc
 
