@@ -64,7 +64,7 @@ cp -r ./data/xfce4 ${CONFIG_DIR}
 
 cat ./data/zprofile_add >> /home/${MAIN_USER}/.zprofile
 
-chmod -R ${MAIN_USER}:users /home/${MAIN_USER}
+chown -R ${MAIN_USER}:users /home/${MAIN_USER}
 
 # Root installation
 cat ./data/bash_profile_add >> /root/.bash_profile
