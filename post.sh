@@ -12,7 +12,7 @@ echo "# Swap partition" | sudo tee -a ${FSTAB}
 echo -e "UUID=${SWAP_UUID} none swap defaults 0 0\n" | sudo tee -a ${FSTAB}
 
 # Configure zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh); exit"
 
 ORIG=`pwd`
 cd /tmp
