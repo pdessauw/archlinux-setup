@@ -1,72 +1,3 @@
-<html lang="en">
-<meta charset="utf-8">
-<link rel="icon" type="image/x-icon" class="js-site-favicon" href="https://assets-cdn.github.com/favicon.ico">
-<link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/site-cd79f063f6da2fef8de0055aa11c913cc1873486fc05ade3227e0cbcc7a168c6.css" media="all" rel="stylesheet" />
-<meta name="theme-color" content="#1e2327">
-<meta property="fb:app_id" content="1401488693436528">
-<meta content="113542" name="octolytics-dimension-user_id" /><meta content="altercation" name="octolytics-dimension-user_login" /><meta content="1381283" name="octolytics-dimension-repository_id" /><meta content="altercation/solarized" name="octolytics-dimension-repository_nwo" /><meta content="true" name="octolytics-dimension-repository_public" /><meta content="false" name="octolytics-dimension-repository_is_fork" /><meta content="1381283" name="octolytics-dimension-repository_network_root_id" /><meta content="altercation/solarized" name="octolytics-dimension-repository_network_root_nwo" /><meta content="false" name="octolytics-dimension-repository_explore_github_marketplace_ci_cta_shown" />
-<meta class="js-ga-set" name="dimension1" content="Logged Out">
-<meta http-equiv="x-pjax-version" content="3fd9b61e708264c8d0aa1d1fcf809b15">
-<link href="https://github.com/altercation/solarized/commits/master.atom" rel="alternate" title="Recent Commits to solarized:master" type="application/atom+xml">
-<body class="logged-out env-production page-blob">
-<div class="facebox-content" role="dialog" aria-labelledby="facebox-header" aria-describedby="facebox-description">
-<a href="https://github.com" aria-label="Homepage" class="footer-octicon" title="GitHub">
-<div id="ajax-error-message" class="ajax-error-message flash flash-error">
-<header class="Header header-logged-out  position-relative f4 py-3" role="banner">
-<a class="commit-tease-sha" href="/altercation/solarized/commit/8a909d311a29971a6e14c4625e313b3f837eaa7a" data-pjax>
-<svg aria-hidden="true" class="octicon octicon-x" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"/></svg>
-<nav class="reponav js-repo-nav js-sidenav-container-pjax container"
-<ul class="list-style-none d-flex flex-wrap ">
-<li class="mr-3"><a href="https://github.com/blog" data-ga-click="Footer, go to blog, text:blog">Blog</a></li>
-<!-- '"` --><!-- </textarea></xmp> --></option></form><form accept-charset="UTF-8" action="" class="js-jump-to-line-form" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
-<label class="form-control header-search-wrapper js-chromeless-input-container">
-<input type="text" aria-label="Filter branches/tags" id="context-commitish-filter-field" class="form-control js-filterable-field js-navigation-enable" placeholder="Filter branches/tags">
-class="js-pjax-capture-input btn btn-sm BtnGroup-item"
-data-hotkey="t">
-name="q"
-value=""
-placeholder="Search"
-aria-label="You must be signed in to make or propose changes">
-data-unscoped-placeholder="Search GitHub"
-data-scoped-placeholder="Search"
-autocapitalize="off">
-<span class="signed-out-tab-flash">You signed out in another tab or window. <a href="">Reload</a> to refresh your session.</span>
-<div role="main">
-<div itemscope itemtype="http://schema.org/SoftwareSourceCode">
-<h1 class="public ">
---><span class="path-divider">/</span><!--
---><strong itemprop="name"><a href="/altercation/solarized" data-pjax="#js-repo-pjax-container">solarized</a></strong>
-itemtype="http://schema.org/BreadcrumbList"
-role="navigation"
-data-pjax="#js-repo-pjax-container">
-<span itemscope itemtype="http://schema.org/ListItem" itemprop="itemListElement">
-<span itemprop="name">Pull requests</span>
-<meta itemprop="position" content="3">
-<button class="btn-octicon ml-0 px-2 p-0 bg-white border border-gray-dark rounded-1 dropdown-toggle js-menu-target" id="js-file-line-action-button" type="button" aria-expanded="false" aria-haspopup="true" aria-label="Inline file action toolbar" aria-controls="inline-file-actions">
-type="button" aria-label="Switch branches or tags" aria-expanded="false" aria-haspopup="true">
-<svg aria-label="Close" class="octicon octicon-x js-menu-close" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"/></svg>
-<div data-filterable-for="context-commitish-filter-field" data-filterable-type="substring">
-href="/altercation/solarized/tree/v1.0beta/xfce4-terminal/dark/terminalrc"
-data-name="v1.0beta"
-data-skip-pjax="true"
-rel="nofollow">
-<button aria-label="Copy file path to clipboard" class="js-zeroclipboard btn btn-sm BtnGroup-item tooltipped tooltipped-s" data-copied-hint="Copied!" type="button">Copy path</button>
-<relative-time datetime="2013-06-27T06:44:33Z">Jun 27, 2013</relative-time>
-<img alt="@TrevorBramble" height="24" src="https://avatars0.githubusercontent.com/u/92880?s=48&amp;v=4" width="24" />
-<button type="button" class="facebox-close js-facebox-close" aria-label="Close modal">
-<h2 class="facebox-header" data-facebox-id="facebox-header">Users who have contributed to this file</h2>
-<div itemprop="text" class="blob-wrapper data type-text">
-<table class="highlight tab-size js-file-line-container" data-tab-size="8">
-<td id="LC21" class="blob-code blob-code-inner js-file-line">Term=xterm-color</td>
-<g stroke="none" stroke-width="1" fill-rule="evenodd">
-<g transform="translate(-1.000000, -6.000000)">
-<path d="M2.5,9.5 C1.67157288,9.5 1,8.82842712 1,8 C1,7.17157288 1.67157288,6.5 2.5,6.5 C3.32842712,6.5 4,7.17157288 4,8 C4,8.82842712 3.32842712,9.5 2.5,9.5 Z M7.5,9.5 C6.67157288,9.5 6,8.82842712 6,8 C6,7.17157288 6.67157288,6.5 7.5,6.5 C8.32842712,6.5 9,7.17157288 9,8 C9,8.82842712 8.32842712,9.5 7.5,9.5 Z M12.5,9.5 C11.6715729,9.5 11,8.82842712 11,8 C11,7.17157288 11.6715729,6.5 12.5,6.5 C13.3284271,6.5 14,7.17157288 14,8 C14,8.82842712 13.3284271,9.5 12.5,9.5 Z"></path>
-<li><a class="js-zeroclipboard dropdown-item" id= "js-copy-permalink" style="cursor:pointer;" data-original-text="Copy permalink">Copy permalink</a></li>
-<li><a href="https://github.com/about" data-ga-click="Footer, go to about, text:about">About</a></li>
-<input class="form-control linejump-input js-jump-to-line-field" type="text" placeholder="Jump to line&hellip;" aria-label="Jump to line" autofocus>
-<script crossorigin="anonymous" src="https://assets-cdn.github.com/assets/frameworks-69827f77e257c6e2ee5c816bc5dbcb07913e59ee7a90b57d8f8eca6f23351bb6.js"></script>
-<script async="async" crossorigin="anonymous" src="https://assets-cdn.github.com/assets/github-612e4231d765f85e174d61e0673d04aa06f7cf4204bd0d7124dcf6ce464cda86.js"></script>
-
 [Configuration]
 BackgroundMode=TERMINAL_BACKGROUND_TRANSPARENT
 MiscAlwaysShowTabs=FALSE
@@ -93,12 +24,13 @@ MiscDefaultWorkingDir=
 MiscRewrapOnResize=TRUE
 MiscUseShiftArrowsToScroll=FALSE
 MiscSlimTabs=FALSE
-BackgroundDarkness=0.900000
-ColorPalette=rgb(7,54,66);rgb(220,50,47);rgb(133,153,0);rgb(181,137,0);rgb(38,139,210);rgb(211,54,130);rgb(42,161,152);rgb(238,232,213);rgb(0,43,54);rgb(203,75,22);rgb(118,136,0);rgb(181,137,0);rgb(33,121,184);rgb(189,48,116);rgb(34,133,125);rgb(253,246,227)
-ColorForeground=#839496
-ColorBackground=#002b36
-ColorCursor=#93a1a1
-ColorBold=#93a1a1
+BackgroundDarkness=0.950000
+ColorPalette=rgb(7,54,66);rgb(220,50,47);rgb(133,153,0);rgb(181,137,0);rgb(38,139,210);rgb(211,54,130);rgb(42,161,152);rgb(238,232,213);rgb(88,110,117);rgb(203,75,22);rgb(118,136,0);rgb(181,137,0);rgb(33,121,184);rgb(189,48,116);rgb(34,133,125);rgb(253,246,227)
+ColorForeground=#838394949696
+ColorBackground=#070736354242
+ColorCursor=#eeeeeeeeecec
+ColorBold=#eeeeeeeeecec
+TabActivityColor=#72729f9fcfcf
 ColorBoldUseDefault=FALSE
-TabActivityColor=#dc322f
+ColorCursorUseDefault=FALSE
 
