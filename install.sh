@@ -39,20 +39,34 @@ pacman -S --noconfirm sudo vim zsh curl wget
 DESKTOP_PKG="xorg-server xfce4"
 pacman -S --noconfirm ${DESKTOP_PKG}
 
-# Installing sudo
+# Install yaourt
+pacman -S --needed --noconfirm base-devel yajl
+git clone https://aur.archlinux.org/package-query.git
+cd package-query
+makepkg -si --noconfirm
+cd ..
+git clone https://aur.archlinux.org/yaourt.git
+cd yaourt
+makepkg -si --noconfirm
+cd ..
+rm -rf package-query yaourt
+
+# Install sudo
 visudo
 
-# Root user configuration
+# Configure root user
 echo "Please enter a password for the root user"
 passwd
 
-# Main user configuration
+cat ./data/bash_profile_add >> /root/.bash_profile
+cat ./data/rc.txt >> /root/.bashrc
+
+# Configure main account
 useradd -m -g users -G wheel -s /bin/zsh ${MAIN_USER}
 echo "Please enter a password for ${MAIN_USER}"
 passwd ${MAIN_USER}
 echo "exec startxfce4" >> /home/${MAIN_USER}/.xinitrc
 
-# Finish installation of user home
 CONFIG_DIR="/home/${MAIN_USER}/.config"
 mkdir -p ${CONFIG_DIR}
 cp -r ./data/xfce4 ${CONFIG_DIR}
@@ -61,9 +75,5 @@ cat ./data/zprofile_add >> /home/${MAIN_USER}/.zprofile
 
 chown -R ${MAIN_USER}:users /home/${MAIN_USER}
 
-# Root installation
-cat ./data/bash_profile_add >> /root/.bash_profile
-cat ./data/rc.txt >> /root/.bashrc
-
-echo "Configuration done. Please reboot the machine, login with the newly created user and execute the post.sh script."i
+echo "Configuration done. Please reboot the machine, login with the newly created user and execute the post.sh script."
 
