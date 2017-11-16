@@ -30,3 +30,15 @@ $ cd /root
 $ git clone https://bitbucket.org/pdessauw/archlinux-install
 $ ./install.sh
 ```
+
+Use `exit` to go back to the installation media and `reboot` to start on the new machine.
+
+## Post-installation
+
+After restarting the machine, log in with your newly created user.
+
+```bash
+$ sudo cp -r /root/archlinux-install ~
+$ cd ~/archlinux-install
+$ ./post.sh
+```
