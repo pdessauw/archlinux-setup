@@ -11,8 +11,13 @@ SWAP_UUID=`lsblk -no UUID /dev/sda2`
 echo "# Swap partition" | sudo tee -a ${FSTAB}
 echo -e "UUID=${SWAP_UUID} none swap defaults 0 0\n" | sudo tee -a ${FSTAB}
 
+# Install guest additions
+VBOX_PKG="virtualbox-guest-modules-arch virtualbox-guest-utils"
+sudo pacman -S --noconfirm ${VBOX_PKG}
+sudo modprobe -a vboxguest vboxsf vboxvideo
+
 # Configure zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh); exit"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed -r 's;env zsh;exit;g')"
 
 ORIG=`pwd`
 cd /tmp
@@ -28,4 +33,9 @@ cat ./zshrc | perl -pe 's;(ZSH_THEME=).+$;\1"agnoster";g' > ~/.zshrc
 rm ./zshrc
 
 cat data/rc.txt >> ~/.zshrc
+
+# Reboot to take all changes into action
+echo "Installation complete. System rebooting in 5 secs..."
+sleep 5
+sudo reboot
 

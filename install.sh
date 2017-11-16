@@ -39,11 +39,6 @@ pacman -S --noconfirm sudo vim zsh curl wget
 DESKTOP_PKG="xorg-server xfce4"
 pacman -S --noconfirm ${DESKTOP_PKG}
 
-# Install guest additions
-VBOX_PKG="virtualbox-guest-modules-arch virtualbox-guest-utils"
-pacman -S --noconfirm ${VBOX_PKG}
-modprobe -a vboxguest vboxsf vboxvideo
-
 # Installing sudo
 visudo
 
