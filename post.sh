@@ -10,8 +10,12 @@ FSTAB="/etc/fstab"
 SWAP_UUID=`lsblk -no UUID /dev/sda2`
 echo "# Swap partition" | sudo tee -a ${FSTAB}
 echo -e "UUID=${SWAP_UUID} none swap defaults 0 0\n" | sudo tee -a ${FSTAB}
-echo "# Shared folder"
+echo "# Shared folder" | sudo tee -a ${FSTAB}
 echo -e "data /mnt/data vboxsf gid=users,rw,dmode=775,fmode=664,comment=systemd.automount 0 0\n" | sudo tee -a ${FSTAB}
+
+# Configure shared folder
+mkdir -p /mnt/data
+ln -s /mnt/data ~/data
 
 # Install yaourt
 sudo pacman -S --needed --noconfirm base-devel yajl
@@ -31,8 +35,8 @@ sudo pacman -S --noconfirm ${VBOX_PKG}
 sudo modprobe -a vboxguest vboxsf vboxvideo
 
 # Install extra packages
-EXTRA_PKGS="pygmentize"
-yaourt -Syuai --noconfirm ${EXTRA_PKGS}
+EXTRA_PKGS="ncdu pydf pygmentize firefox-developer chromium atom jetbrains-toolbox studio-3t"
+yaourt -Syua --noconfirm ${EXTRA_PKGS}
 
 # Configure zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed -r 's;env zsh;exit;g')"
