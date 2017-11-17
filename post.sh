@@ -37,6 +37,7 @@ sudo modprobe -a vboxguest vboxsf vboxvideo
 # Install extra packages
 EXTRA_PKGS="ncdu pydf pygmentize firefox-developer chromium atom jetbrains-toolbox studio-3t"
 yaourt -Syua --noconfirm ${EXTRA_PKGS}
+sudo cp data/jetbrains-toolbox-icon.png /opt/jetbrains-toolbox/icon.png
 
 # Configure zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed -r 's;env zsh;exit;g')"
