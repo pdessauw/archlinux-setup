@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=PyCharm Professional
+Icon=/home/user/.local/share/JetBrains/Toolbox/apps/PyCharm-P/ch-0/172.4343.24/.icon.svg
+Exec="/home/user/.local/share/JetBrains/Toolbox/apps/PyCharm-P/ch-0/172.4343.24/bin/pycharm.sh" %f
+Comment=Python IDE for professional developers
+Categories=Development;IDE;
+Terminal=false
+StartupWMClass=jetbrains-pycharm
+X-XFCE-Source=file:///home/user/.local/share/applications/jetbrains-pycharm.desktop

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=IntelliJ IDEA Ultimate
+Icon=/home/user/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/172.4574.11/.icon.svg
+Exec="/home/user/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/172.4574.11/bin/idea.sh" %f
+Comment=Capable and ergonomic Java IDE
+Categories=Development;IDE;
+Terminal=false
+StartupWMClass=jetbrains-idea
+X-XFCE-Source=file:///home/user/.local/share/applications/jetbrains-idea.desktop
