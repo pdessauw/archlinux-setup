@@ -10,7 +10,7 @@ Bunch of scripts and instructions to properly setup an Archlinux box.
 
 ```bash
 $ cd /tmp
-$ curl -L -O https://bitbucket.org/pdessauw/arch-setup/raw/master/prepare.sh -u pdessauw
+$ curl -L -O -u pdessauw https://bitbucket.org/pdessauw/arch-setup/raw/master/prepare.sh
 ```
 
 Edit the script parameters to your liking, using `vi prepare.sh`.
