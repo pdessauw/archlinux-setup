@@ -10,6 +10,8 @@ FSTAB="/etc/fstab"
 SWAP_UUID=`lsblk -no UUID /dev/sda2`
 echo "# Swap partition" | sudo tee -a ${FSTAB}
 echo -e "UUID=${SWAP_UUID} none swap defaults 0 0\n" | sudo tee -a ${FSTAB}
+echo "# Shared folder"
+echo -e "data /mnt/data vboxsf gid=users,rw,dmode=775,fmode=664,comment=systemd.automount 0 0\n" | sudo tee -a ${FSTAB}
 
 # Install yaourt
 sudo pacman -S --needed --noconfirm base-devel yajl
