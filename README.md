@@ -45,7 +45,7 @@ After restarting the machine, log in with your newly created user.
 
 ```bash
 $ sudo cp -r /root/arch-setup ~
-$ chown -R $USER:users ~/arch-setup
+$ sudo chown -R $USER:users ~/arch-setup
 $ cd ~/arch-setup
 $ ./post.sh
 ```
