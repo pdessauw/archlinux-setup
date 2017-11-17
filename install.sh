@@ -39,18 +39,6 @@ pacman -S --noconfirm sudo vim zsh curl wget htop
 DESKTOP_PKG="xorg-server xfce4"
 pacman -S --noconfirm ${DESKTOP_PKG}
 
-# Install yaourt
-pacman -S --needed --noconfirm base-devel yajl
-git clone https://aur.archlinux.org/package-query.git
-cd package-query
-makepkg -si --noconfirm
-cd ..
-git clone https://aur.archlinux.org/yaourt.git
-cd yaourt
-makepkg -si --noconfirm
-cd ..
-rm -rf package-query yaourt
-
 # Install sudo
 visudo
 
@@ -59,7 +47,7 @@ echo "Please enter a password for the root user"
 passwd
 
 cat ./data/bash_profile_add >> /root/.bash_profile
-cat ./data/rc.txt >> /root/.bashrc
+cat ./data/rc.sh >> /root/.bashrc
 
 # Configure main account
 useradd -m -g users -G wheel -s /bin/zsh ${MAIN_USER}

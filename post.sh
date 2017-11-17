@@ -11,6 +11,18 @@ SWAP_UUID=`lsblk -no UUID /dev/sda2`
 echo "# Swap partition" | sudo tee -a ${FSTAB}
 echo -e "UUID=${SWAP_UUID} none swap defaults 0 0\n" | sudo tee -a ${FSTAB}
 
+# Install yaourt
+sudo pacman -S --needed --noconfirm base-devel yajl
+git clone https://aur.archlinux.org/package-query.git
+cd package-query
+makepkg -si --noconfirm
+cd ..
+git clone https://aur.archlinux.org/yaourt.git
+cd yaourt
+makepkg -si --noconfirm
+cd ..
+rm -rf package-query yaourt
+
 # Install guest additions
 VBOX_PKG="virtualbox-guest-modules-arch virtualbox-guest-utils"
 sudo pacman -S --noconfirm ${VBOX_PKG}
@@ -18,7 +30,7 @@ sudo modprobe -a vboxguest vboxsf vboxvideo
 
 # Install extra packages
 EXTRA_PKGS="pygmentize"
-yaourt -Syua ${EXTRA_PKGS}
+yaourt -Syuai --noconfirm ${EXTRA_PKGS}
 
 # Configure zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed -r 's;env zsh;exit;g')"
