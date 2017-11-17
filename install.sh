@@ -74,6 +74,7 @@ cp -r ./data/xfce4 ${CONFIG_DIR}
 cat ./data/zprofile_add >> /home/${MAIN_USER}/.zprofile
 
 chown -R ${MAIN_USER}:users /home/${MAIN_USER}
+rm -rf /home/${MAIN_USER}/.bash*
 
 echo "Configuration done. Please reboot the machine, login with the newly created user and execute the post.sh script."
 
