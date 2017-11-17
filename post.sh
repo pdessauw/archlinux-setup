@@ -35,7 +35,7 @@ cd ${ORIG}
 cp ~/.zshrc ./zshrc
 cat ./zshrc | sed -r 's;(ZSH_THEME=).+$;\1"agnoster";g' > ~/.zshrc
 cp ~/.zshrc ./zshrc
-cat ./zshrc | sed -r 's;^ +(git).+$;\1 archlinux colorize;g' > ~/.zshrc
+cat ./zshrc | sed -r 's;^( +git).*$;\1 archlinux colorize;g' > ~/.zshrc
 rm ./zshrc
 
 cat data/rc.sh >> ~/.zshrc
