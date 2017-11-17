@@ -16,6 +16,10 @@ VBOX_PKG="virtualbox-guest-modules-arch virtualbox-guest-utils"
 sudo pacman -S --noconfirm ${VBOX_PKG}
 sudo modprobe -a vboxguest vboxsf vboxvideo
 
+# Install extra packages
+EXTRA_PKGS="pygmentize"
+yaourt -Syua ${EXTRA_PKGS}
+
 # Configure zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed -r 's;env zsh;exit;g')"
 
@@ -29,10 +33,12 @@ rm -rf fonts
 cd ${ORIG}
 
 cp ~/.zshrc ./zshrc
-cat ./zshrc | perl -pe 's;(ZSH_THEME=).+$;\1"agnoster";g' > ~/.zshrc
+cat ./zshrc | sed -r 's;(ZSH_THEME=).+$;\1"agnoster";g' > ~/.zshrc
+cp ~/.zshrc ./zshrc
+cat ./zshrc | sed -r 's;^ +(git).+$;\1 archlinux colorize;g' > ~/.zshrc
 rm ./zshrc
 
-cat data/rc.txt >> ~/.zshrc
+cat data/rc.sh >> ~/.zshrc
 
 # Reboot to take all changes into action
 echo "Installation complete. System rebooting in 5 secs..."

@@ -33,7 +33,7 @@ ETH="enp0s3"
 systemctl enable dhcpcd@${ETH}
 
 # Install additional packages
-pacman -S --noconfirm sudo vim zsh curl wget
+pacman -S --noconfirm sudo vim zsh curl wget htop
 
 # Install desktop application
 DESKTOP_PKG="xorg-server xfce4"
