@@ -44,7 +44,8 @@ Type `exit` to go back to the installation media and `reboot` to start on the ne
 After restarting the machine, log in with your newly created user.
 
 ```bash
-$ sudo cp -r /root/archlinux-install ~
-$ cd ~/archlinux-install
+$ sudo cp -r /root/arch-setup ~
+$ chown -R $USER:users ~/arch-setup
+$ cd ~/arch-setup
 $ ./post.sh
 ```
