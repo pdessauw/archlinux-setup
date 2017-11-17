@@ -28,10 +28,16 @@ Once the script has ended, run `arch-chroot /mnt` to login to the newly created 
 $ pacman -S git
 $ cd /root
 $ git clone https://bitbucket.org/pdessauw/arch-setup
+$ cd arch-setup
+```
+
+Edit the script parameters to your liking, using `vi install.sh`.
+
+```bash
 $ ./install.sh
 ```
 
-Use `exit` to go back to the installation media and `reboot` to start on the new machine.
+Type `exit` to go back to the installation media and `reboot` to start on the new machine.
 
 ## Post-installation
 
