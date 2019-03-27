@@ -58,7 +58,7 @@ echo "exec startxfce4" >> /home/${MAIN_USER}/.xinitrc
 CONFIG_DIR="/home/${MAIN_USER}/.config"
 mkdir -p ${CONFIG_DIR}
 cp -r ./data/xfce4 ${CONFIG_DIR}
-cp ./data/wallpaper.jpg /usr/local/share/
+cp ./data/wallpaper.jpg /usr/share/backgrounds/xfce
 
 cat ./data/zprofile_add >> /home/${MAIN_USER}/.zprofile
 
