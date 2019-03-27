@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # ===== Edit the following values =====
-HOSTNAME="linux"
+MACHINE_HOSTNAME="linux"
 MAIN_USER="user"
 
 # ==== DO NOT EDIT  PAST THIS LINE ====
@@ -16,7 +16,7 @@ ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
 hwclock --systohc
 
 # Hostname generation
-echo "${HOSTNAME}" > /etc/hostname
+echo "${MACHINE_HOSTNAME}" > /etc/hostname
 
 # Install bootloader
 pacman -S --noconfirm syslinux
@@ -29,7 +29,7 @@ cp ${BOOT_FILE} ${BOOT_FILE_ORIG}
 cat ${BOOT_FILE_ORIG} | perl -pe "s;TIMEOUT [0-9]+;TIMEOUT 15;" > ${BOOT_FILE}
 
 # Enable dhcpcd on net interface
-ETH="enp0s3"
+ETH=$(ip link | grep -v lo | sed -r "s; ;;g" | cut -d':' -f2 | head -n1)
 systemctl enable dhcpcd@${ETH}
 
 # Install additional packages
@@ -58,6 +58,7 @@ echo "exec startxfce4" >> /home/${MAIN_USER}/.xinitrc
 CONFIG_DIR="/home/${MAIN_USER}/.config"
 mkdir -p ${CONFIG_DIR}
 cp -r ./data/xfce4 ${CONFIG_DIR}
+cp ./data/wallpaper.jpg /usr/local/share/
 
 cat ./data/zprofile_add >> /home/${MAIN_USER}/.zprofile
 

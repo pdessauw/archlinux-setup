@@ -17,17 +17,12 @@ echo -e "data /mnt/data vboxsf gid=users,rw,dmode=775,fmode=664,comment=systemd.
 mkdir -p /mnt/data
 ln -s /mnt/data ~/data
 
-# Install yaourt
-sudo pacman -S --needed --noconfirm base-devel yajl
-git clone https://aur.archlinux.org/package-query.git
-cd package-query
+# Install yay
+git clone https://aur.archlinux.org/yay.git
+cd yay
 makepkg -si --noconfirm
 cd ..
-git clone https://aur.archlinux.org/yaourt.git
-cd yaourt
-makepkg -si --noconfirm
-cd ..
-rm -rf package-query yaourt
+rm -rf yay
 
 # Install guest additions
 VBOX_PKG="virtualbox-guest-modules-arch virtualbox-guest-utils"
@@ -40,7 +35,8 @@ yaourt -Syua --noconfirm ${EXTRA_PKGS}
 sudo cp data/jetbrains-toolbox-icon.png /opt/jetbrains-toolbox/icon.png
 
 # Configure zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed -r 's;env zsh;exit;g')"
+OH_MY_ZSH="https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh"
+sh -c "$(curl -fsSL ${OH_MY_ZSH} | sed -r 's;env zsh;exit;g')"
 
 ORIG=`pwd`
 cd /tmp
