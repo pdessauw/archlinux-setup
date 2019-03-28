@@ -14,7 +14,7 @@ echo "# Shared folder" | sudo tee -a ${FSTAB}
 echo -e "data /mnt/data vboxsf gid=users,rw,dmode=775,fmode=664,comment=systemd.automount 0 0\n" | sudo tee -a ${FSTAB}
 
 # Configure shared folder
-mkdir -p /mnt/data
+sudo mkdir -p /mnt/data
 ln -s /mnt/data ~/data
 
 # Install yay
