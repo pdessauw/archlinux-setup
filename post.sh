@@ -17,6 +17,9 @@ echo -e "data /mnt/data vboxsf gid=users,rw,dmode=775,fmode=664,comment=systemd.
 sudo mkdir -p /mnt/data
 ln -s /mnt/data ~/data
 
+# Prepare makepkg install
+sudo pacman -S --noconfirm binutils make gcc pkg-config fakeroot
+
 # Install yay
 git clone https://aur.archlinux.org/yay.git
 cd yay
@@ -30,8 +33,8 @@ sudo pacman -S --noconfirm ${VBOX_PKG}
 sudo modprobe -a vboxguest vboxsf vboxvideo
 
 # Install extra packages
-EXTRA_PKGS="ncdu pydf pygmentize firefox-developer chromium atom jetbrains-toolbox studio-3t"
-yaourt -Syua --noconfirm ${EXTRA_PKGS}
+EXTRA_PKGS="firefox-developer-edition atom jetbrains-toolbox robo3t-bin"
+yay -Syua --noconfirm ${EXTRA_PKGS}
 sudo cp data/jetbrains-toolbox-icon.png /opt/jetbrains-toolbox/icon.png
 
 # Configure zsh
@@ -50,7 +53,7 @@ cd ${ORIG}
 cp ~/.zshrc ./zshrc
 cat ./zshrc | sed -r 's;(ZSH_THEME=).+$;\1"agnoster";g' > ~/.zshrc
 cp ~/.zshrc ./zshrc
-cat ./zshrc | sed -r 's;^( +git).*$;\1 archlinux colorize;g' > ~/.zshrc
+cat ./zshrc | sed -r 's;^( +git).*$;\1 archlinux;g' > ~/.zshrc
 rm ./zshrc
 
 cat data/rc.sh >> ~/.zshrc
