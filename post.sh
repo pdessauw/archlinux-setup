@@ -34,7 +34,7 @@ sudo modprobe -a vboxguest vboxsf vboxvideo
 
 # Install extra packages
 EXTRA_PKGS="firefox-developer-edition atom jetbrains-toolbox robo3t-bin"
-yay -Syua --noconfirm ${EXTRA_PKGS}
+yay -S --noconfirm ${EXTRA_PKGS}
 sudo cp data/jetbrains-toolbox-icon.png /opt/jetbrains-toolbox/icon.png
 
 # Configure zsh
