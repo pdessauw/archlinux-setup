@@ -2,7 +2,7 @@
 #
 # ===== Edit the following values =====
 BOOT_SIZE="250MiB"
-SWAP_SIZE="4GiB"
+SWAP_SIZE="8GiB"
 HDD_PATH="/dev/sda"
 
 # ==== DO NOT EDIT  PAST THIS LINE ====
