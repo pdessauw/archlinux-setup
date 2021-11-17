@@ -33,7 +33,7 @@ ETH=$(ip link | grep -v lo | sed -r "s; ;;g" | cut -d':' -f2 | head -n1)
 systemctl enable dhcpcd@${ETH}
 
 # Install additional packages
-pacman -S --noconfirm sudo vim zsh curl wget htop
+pacman -S --noconfirm sudo zsh curl wget htop
 
 # Install desktop application
 DESKTOP_PKG="xorg-server xfce4"
@@ -50,7 +50,7 @@ cat ./data/bash_profile_add >> /root/.bash_profile
 cat ./data/rc.sh >> /root/.bashrc
 
 # Configure main account
-useradd -m -g users -G wheel -s /bin/zsh ${MAIN_USER}
+useradd -m -g users -G sudo -s /bin/zsh ${MAIN_USER}
 echo "Please enter a password for ${MAIN_USER}"
 passwd ${MAIN_USER}
 echo "exec startxfce4" >> /home/${MAIN_USER}/.xinitrc

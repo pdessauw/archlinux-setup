@@ -10,11 +10,8 @@ Bunch of scripts and instructions to properly setup an Archlinux box.
 
 ```bash
 $ cd /tmp
-$ GITHUB_TOKEN="insert_access_token_here"
-$ curl -H "Authorization: ${GITHUB_TOKEN}" \
-  -H "Accept: application/vnd.github.v3.raw" \
-  -O \
-  -L https://api.github.com/repos/pdessauw/arch-setup/contents/prepare.sh
+$ curl -O -L \
+    https://raw.githubusercontent.com/pdessauw/archlinux-setup/master/prepare.sh
 ```
 
 Edit the script parameters to your liking, using `vi prepare.sh`.
@@ -24,31 +21,36 @@ $ chmod +x prepare.sh
 $ ./prepare.sh
 ```
 
-Once the script has ended, run `arch-chroot /mnt` to login to the newly created machine.
+Once the script has ended, run `arch-chroot /mnt` to login to the newly created 
+machine.
 
 ## Installation
 
 ```bash
-$ pacman -S git
+$ pacman -S vim git
 $ cd /root
-$ git clone https://github.com/pdessauw/arch-setup
-$ cd arch-setup
+$ git clone https://github.com/pdessauw/archlinux-setup
+$ cd archlinux-setup
 ```
 
-Edit the script parameters to your liking, using `vi install.sh`.
+Edit the script parameters to your liking, using `vim install.sh`.
 
 ```bash
 $ ./install.sh
 ```
 
-Type `exit` to go back to the installation media and `reboot` to start on the new machine.
+> *Note:*   When the visudo window appears, make sure to uncomment the line 
+>           allowing the `sudo` group to perform sudo operations. 
+
+Type `exit` to go back to the installation media and `reboot` to start on the 
+new machine.
 
 ## Post-installation
 
 After restarting the machine, log in with your newly created user.
 
 ```bash
-$ sudo mv /root/arch-setup ~
+$ sudo mv /root/archlinux-setup ~
 $ sudo chown -R $USER:users ~/arch-setup
 $ cd ~/arch-setup
 $ ./post.sh
