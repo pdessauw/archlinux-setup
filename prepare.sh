@@ -2,7 +2,7 @@
 #
 # ===== Edit the following values =====
 BOOT_SIZE="250MiB"
-SWAP_SIZE="8GiB"
+SWAP_SIZE="4GiB"
 HDD_PATH="/dev/sda"
 
 # ==== DO NOT EDIT  PAST THIS LINE ====
@@ -22,7 +22,7 @@ mount ${HDD_PATH}3 /mnt
 mkdir /mnt/boot
 mount ${HDD_PATH}1 /mnt/boot
 
-pacstrap /mnt base
+pacstrap /mnt base linux linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
 
 echo "Configuration finished. Please run 'arch-chroot /mnt' to continue the installation."
