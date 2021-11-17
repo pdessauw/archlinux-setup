@@ -50,6 +50,7 @@ cat ./data/bash_profile_add >> /root/.bash_profile
 cat ./data/rc.sh >> /root/.bashrc
 
 # Configure main account
+groupadd sudo
 useradd -m -g users -G sudo -s /bin/zsh ${MAIN_USER}
 echo "Please enter a password for ${MAIN_USER}"
 passwd ${MAIN_USER}
