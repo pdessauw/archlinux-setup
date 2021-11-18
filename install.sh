@@ -28,7 +28,8 @@ BOOT_FILE_ORIG="${BOOT_FILE}.orig"
 cp ${BOOT_FILE} ${BOOT_FILE_ORIG}
 cat ${BOOT_FILE_ORIG} | perl -pe "s;TIMEOUT [0-9]+;TIMEOUT 15;" > ${BOOT_FILE}
 
-# Enable dhcpcd on net interface
+# Install and enable dhcpcd on net interface
+pacman -S --noconfirm dhcpcd
 ETH=$(ip link | grep -v lo | sed -r "s; ;;g" | cut -d':' -f2 | head -n1)
 systemctl enable dhcpcd@${ETH}
 
