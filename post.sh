@@ -14,7 +14,7 @@ echo "# Shared folder" | sudo tee -a ${FSTAB}
 echo -e "data /mnt/data vboxsf gid=users,rw,dmode=775,fmode=664,comment=systemd.automount 0 0\n" | sudo tee -a ${FSTAB}
 
 # Configure shared folder
-sudo mkdir -p /mnt/data
+sudo mkdir -p /mnt/data /mnt/cdrom
 ln -s /mnt/data ~/data
 
 # Prepare makepkg install
@@ -26,11 +26,6 @@ cd yay
 makepkg -si --noconfirm
 cd ..
 rm -rf yay
-
-# Install guest additions
-VBOX_PKG="virtualbox-guest-modules-arch virtualbox-guest-utils"
-sudo pacman -S --noconfirm ${VBOX_PKG}
-sudo modprobe -a vboxguest vboxsf vboxvideo
 
 # Install extra packages
 EXTRA_PKGS="firefox-developer-edition atom jetbrains-toolbox robo3t-bin"
