@@ -32,18 +32,12 @@ EXTRA_PKGS="firefox-developer-edition atom jetbrains-toolbox robo3t-bin"
 yay -S --noconfirm ${EXTRA_PKGS}
 sudo cp data/jetbrains-toolbox-icon.png /opt/jetbrains-toolbox/icon.png
 
+# Install necessary fonts
+yay -S noto-fonts noto-fonts-extra
+
 # Configure zsh
 OH_MY_ZSH="https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh"
 sh -c "$(curl -fsSL ${OH_MY_ZSH} | sed -r 's;env zsh;exit;g')"
-
-ORIG=`pwd`
-cd /tmp
-git clone https://github.com/powerline/fonts.git --depth=1
-cd fonts
-./install.sh
-cd ..
-rm -rf fonts
-cd ${ORIG}
 
 cp ~/.zshrc ./zshrc
 cat ./zshrc | sed -r 's;(ZSH_THEME=).+$;\1"agnoster";g' > ~/.zshrc
