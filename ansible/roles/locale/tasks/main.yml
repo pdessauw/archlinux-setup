@@ -1,0 +1,16 @@
+- name: Setup LANG locale variable
+  set_fact:
+    locale_lang: "{{ locale | split(' ') | first }}"
+
+- name: Create locale.conf file
+  template:
+    src: "templates/locale.conf.j2"
+    dest: "/etc/locale.conf"
+
+- name: Create locale.gen file
+  template:
+    src: "templates/locale.gen.j2"
+    dest: "/etc/locale.gen"
+
+- name: Generate the locales
+  shell: locale-gen

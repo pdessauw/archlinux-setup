@@ -1,0 +1,54 @@
+- name: Create variable for data directory
+  shell: "echo $(dirname {{ playbook_dir }})/data"
+  register: data_dir
+  ignore_errors: true
+
+- name: Allow sudo group to perform sudo commands
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: "%sudo ALL="
+    line: "%sudo ALL=(ALL) ALL"
+    validate: "/usr/sbin/visudo -cf %s"
+
+# Root user configuration
+- name: Change root password
+  user:
+    name: "root"
+    password: "{{ root_password | password_hash('sha512') }}"
+
+- name: Add extra content to root's bash_profile
+  shell: "cat {{ data_dir.stdout }}/bash_profile_add >> /root/.bash_profile"
+
+- name: Add extra content to root's bashrc
+  shell: "cat {{ data_dir.stdout }}/rc.sh >> /root/.bashrc"
+
+- name: Create 'sudo' group
+  group:
+    name: sudo
+    state: present
+
+# Regular user configuration
+- name: Create default user
+  user:
+    name: "{{ user_name }}"
+    state: present
+    password: "{{ user_password | password_hash('sha512') }}"
+    shell: /bin/zsh
+    groups:
+      - sudo
+      - users
+
+- name: Add extra content to user's zprofile
+  shell: "cat {{ data_dir.stdout }}/zprofile_add >> /home/{{ user_name }}/.zprofile"
+
+- name: Change user home ownership
+  file:
+    path: "/home/{{ user_name }}"
+    owner: "{{ user_name }}"
+    group: "users"
+
+- name: Delete user bash files
+  file:
+    path: "/home/{{ user_name }}/.bash*"
+    state: absent

@@ -1,0 +1,20 @@
+- name: Copy hostname
+  template:
+    src: "templates/hostname.j2"
+    dest: "/etc/hostname"
+
+- name: Copy hosts
+  template:
+    src: "templates/hosts.j2"
+    dest: "/etc/hosts"
+
+- name: Add extra hosts
+  lineinfile:
+    path: "/etc/hosts"
+    line: "{{ item }}"
+  loop: "{{ hosts }}"
+
+- name: Add empty line to hosts file
+  lineinfile:
+    path: "/etc/hosts"
+    line: ""

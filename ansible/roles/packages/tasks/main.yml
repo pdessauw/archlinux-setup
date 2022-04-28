@@ -1,0 +1,5 @@
+- name: Install needed packages
+  community.general.pacman:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ packages }}"

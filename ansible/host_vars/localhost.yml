@@ -1,0 +1,17 @@
+locale: "en_US.UTF-8 UTF-8"
+timezone: "America/New_York"
+hostname: "linux"
+user_name: "user"
+user_password: "pass"
+root_password: "pass"
+hosts:
+  - 127.0.0.1   localhost
+desktop_packages:
+  - xorg-server
+  - xfce4
+packages:
+  - curl
+  - htop
+  - sudo
+  - wget
+  - zsh

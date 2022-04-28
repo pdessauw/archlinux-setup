@@ -1,0 +1,19 @@
+- name: Setup timezone
+  file:
+    src: "/usr/share/zoneinfo/{{ timezone }}"
+    dest: /etc/localtime
+    state: link
+
+- name: Configure hardware clock
+  shell: hwclock --systohc
+
+- name: Install chrony (NTP)
+  community.general.pacman:
+    name: chrony
+    state: present
+
+- name: Enable and start chrony daemon
+  systemd:
+    name: chronyd
+    state: started
+    enabled: yes

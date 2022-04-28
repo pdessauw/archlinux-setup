@@ -1,0 +1,10 @@
+- hosts: local
+  roles:
+    - locale
+    - clock
+    - hostname
+    - bootloader
+    - dhcp
+    - packages
+    - users
+    - desktop
