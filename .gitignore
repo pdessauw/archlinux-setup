@@ -5,7 +5,6 @@
 *.pydevproject
 .metadata
 .gradle
-#bin/
 tmp/
 *.tmp
 *.bak
@@ -140,7 +139,6 @@ coverage.xml
 *.pot
 
 # Django stuff:
-/data
 *.log
 logfile*
 db.sqlite3
