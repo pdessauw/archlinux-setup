@@ -3,9 +3,4 @@
 # =========================
 set -e
 INSTALL_DIR="install.d"
-
-for sc in $(find ${INSTALL_DIR} -name "*.sh")
-do
-  bash ${sc}
-done
-
+find ${INSTALL_DIR} -name "*.sh" -exec bash {} \;

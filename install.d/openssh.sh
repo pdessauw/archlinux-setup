@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
-# Script performing the system installation using Ansible.
+# Script to setup SSH daemon and keys
 # =========================
-# Install ansible + necessary collections.
+SSH_DIR="/root/.ssh"
+SSH_KEY="${SSH_DIR}/id_rsa"
+
 pacman -S --noconfirm \
   openssh
 
-systemctl enable sshd
+ssh-keygen -f ${SSH_KEY} -q -N ''
+cat ${SSH_KEY}.pub >> ${SSH_DIR}/authorized_keys
 
+systemctl enable sshd
