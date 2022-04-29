@@ -1,0 +1,34 @@
+- name: Create variable for script download path
+  shell: "echo $(dirname {{ playbook_dir }})/data"
+  register: data_dir
+  ignore_errors: true
+
+- name: Download install script
+  get_url:
+    url: https://raw.githubusercontent.com/oh-my-zsh/oh-my-zsh/master/tools/install.sh
+    dest: "{{ script_path }}"
+    mode: 0755
+
+- name: Avoid switching to the shell after install
+  lineinfile:
+    path: "{{ script_path }}"
+    search_string: 'exec zsh -l'
+    line: 'exit 0'
+
+- name: Install oh-my-zsh
+  shell: "sh {{ script_path }}"
+
+- name: Setup theme
+  lineinfile:
+    path: "/home/{{ user_name }}/.zshrc"
+    regexp: '^(ZSH_THEME=).+$'
+    line: '\1"agnoster"'
+
+- name: Setup extra plugins
+  lineinfile:
+    path: "/home/{{ user_name }}/.zshrc"
+    regexp: '^(plugins=\(.+)\).*$'
+    line: '\1 archlinux)'
+
+- name: Add extra content to user's zshrc
+  shell: "cat {{ data_dir.stdout }}/rc.sh >> /home/{{ user_name }}/.zshrc"

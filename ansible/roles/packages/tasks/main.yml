@@ -3,3 +3,20 @@
     name: "{{ item }}"
     state: present
   loop: "{{ packages }}"
+
+- name: Download yay package manager
+  git:
+    repo: https://aur.archlinux.org/yay.git
+    dest: /tmp/yay
+
+- name: Install yay package manager
+  shell: |
+    cd /tmp/yay
+    makepkg -si --noconfirm
+
+- name: Install needed AUR packages
+  community.general.pacman:
+    name: "{{ item }}"
+    state: present
+    executable: yay
+  loop: "{{ aur_packages }}"

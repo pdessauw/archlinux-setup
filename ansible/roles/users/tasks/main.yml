@@ -37,6 +37,7 @@
     shell: /bin/zsh
     groups:
       - sudo
+      - docker
       - users
 
 - name: Add extra content to user's zprofile
@@ -46,7 +47,8 @@
   file:
     path: "/home/{{ user_name }}"
     owner: "{{ user_name }}"
-    group: "users"
+    group: users
+    recurse: yes
 
 - name: Delete user bash files
   file:

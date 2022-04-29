@@ -3,7 +3,8 @@
     - locale
     - clock
     - hostname
-    - bootloader
     - packages
+    - fonts
     - users
     - desktop
+    - oh-my-zsh

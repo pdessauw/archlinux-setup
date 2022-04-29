@@ -6,12 +6,27 @@ user_password: "pass"
 root_password: "pass"
 hosts:
   - 127.0.0.1   localhost
+fonts_packages:
+  - noto-fonts
+  - noto-fonts-extra
 desktop_packages:
   - xorg-server
   - xfce4
 packages:
+  - binutils
   - curl
+  - fakeroot
+  - g++
   - htop
+  - make
+  - pkg-config
   - sudo
   - wget
   - zsh
+aur_packages:
+  - docker
+  - docker-compose
+  - firefox-developer-edition
+  - jetbrains-toolbox
+  - jmeter
+  - robo3t-bin
