@@ -7,13 +7,11 @@
 - name: Start XFCE at login
   shell: "echo 'exec startxfce4' >> /home/{{ user_name }}/.xinitrc"
 
-- name: Create config directory
-
 
 - name: Copy XFCE configuration
   copy:
     src: "{{ data_dir.stdout }}/xfce4"
-    dest: "/home/{{ user_name }}/.config/xfce4"
+    dest: "/home/{{ user_name }}/.config"
 
 - name: Add default wallpaper
   copy:
