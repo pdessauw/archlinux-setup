@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 # Script performing the system installation using Ansible.
 # =========================
-set -e
-INSTALL_DIR="install.d"
+# Install ansible + necessary collections.
+pacman -S --noconfirm \
+  openssh
 
-for sc in $(find ${INSTALL_DIR} -name "*.sh")
-do
-  bash ${sc}
-done
+systemctl enable sshd
 
