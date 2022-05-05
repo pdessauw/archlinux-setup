@@ -4,6 +4,7 @@
 BOOT_SIZE="250MiB"
 SWAP_SIZE="4GiB"
 HDD_PATH="/dev/sda"
+ADMIN_PASSWORD="*****"
 
 # ==== DO NOT EDIT  PAST THIS LINE ====
 # -------------------------------------
@@ -25,4 +26,12 @@ mount ${HDD_PATH}1 /mnt/boot
 pacstrap /mnt base linux linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
 
-echo "Configuration finished. Please run 'arch-chroot /mnt' to continue the installation."
+arch-chroot /mnt bash -c """
+  GIT_REPO='/root/archlinux-setup'
+  pacman -S --noconfirm vim git
+  git clone https://github.com/pdessauw/archlinux-setup ${GIT_REPO}
+  sed -i \
+    -E 's;(ADMIN_PASSWORD=\")[^\"]+\";\1${ADMIN_PASSWORD}\";'
+    ${GIT_REPO}/install.d/root.sh
+  ${GIT_REPO}/install-ansible.sh
+"""
