@@ -4,6 +4,9 @@ hostname: "linux"
 user_name: "user"
 user_password: "*****"
 root_password: "*****"
+needed_folders:
+  - /mnt/data
+  - /mnt/cdrom
 hosts:
   - 127.0.0.1   localhost
 fonts_packages:

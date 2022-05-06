@@ -3,8 +3,9 @@
     - locale
     - clock
     - hostname
+    - users
     - packages
     - fonts
-    - users
     - desktop
     - oh-my-zsh
+    - cleanup

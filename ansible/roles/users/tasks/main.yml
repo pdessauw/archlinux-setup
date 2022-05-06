@@ -6,9 +6,9 @@
 - name: Allow sudo group to perform sudo commands
   lineinfile:
     path: /etc/sudoers
-    state: present
-    regexp: "%sudo ALL="
-    line: "%sudo ALL=(ALL) ALL"
+    regexp: "^#\s+(%sudo ALL=.+)$"
+    line: "\g<1>"
+    backrefs: yes
     validate: "/usr/sbin/visudo -cf %s"
 
 # Root user configuration
@@ -17,12 +17,25 @@
     name: "root"
     password: "{{ root_password | password_hash('sha512') }}"
 
+# Nobody user configuration (temporary)
+- name: Change nobody user home and shell
+  user:
+    name: nobody
+    home: /tmp
+    shell: /bin/bash
+
+- name: Copy sudoers file to allow nobody to use pacman
+  copy:
+    src: "{{ data_dir.stdout }}/nobody"
+    dest: /etc/sudoers.d/nobody
+    mode: 0440
+
+# Regular user configuration
 - name: Create 'sudo' group
   group:
     name: sudo
     state: present
 
-# Regular user configuration
 - name: Create default user
   user:
     name: "{{ user_name }}"
@@ -31,7 +44,6 @@
     shell: /bin/zsh
     groups:
       - sudo
-      - docker
       - users
 
 - name: Add extra content to user's zprofile
@@ -48,3 +60,12 @@
   file:
     path: "/home/{{ user_name }}/.bash*"
     state: absent
+
+- name: Create needed directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ user_name }}"
+    group: users
+    mode: 0775
+  loop:  "{{ needed_folders }}"

@@ -1,0 +1,11 @@
+# Disable nobody user
+- name: Change nobody user home and shell
+  user:
+    name: nobody
+    home: /tmp
+    shell: /usr/bin/nologin
+
+- name: Copy sudoers file to allow nobody to use pacman
+  file:
+    src: /etc/sudoers.d/nobody
+    state: absent

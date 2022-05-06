@@ -21,5 +21,13 @@
 - name: Install needed AUR packages
   become: yes
   become_user: nobody
-  shell: "yay -S --noconfirm {{ item }}"
+  shell: |
+    cd /tmp
+    yay -S --noconfirm --buildir=/tmp {{ item }}
   loop: "{{ aur_packages }}"
+
+- name: Add default user to docker group
+  user:
+    name: "{{ user_name }}"
+    groups: docker
+    append: yes
