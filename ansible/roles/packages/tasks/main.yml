@@ -23,7 +23,7 @@
   become_user: nobody
   shell: |
     cd /tmp
-    yay -S --noconfirm --buildir=/tmp {{ item }}
+    yay -S --noconfirm {{ item }}
   loop: "{{ aur_packages }}"
 
 - name: Add default user to docker group

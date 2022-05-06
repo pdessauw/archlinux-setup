@@ -6,3 +6,4 @@ pacman -S --noconfirm \
 
 ETH=$(ip link | grep -v lo | sed -r 's; ;;g' | head -n1)
 systemctl enable "dhcpcd@${ETH}"
+systemctl restart "dhcpcd@${ETH}"

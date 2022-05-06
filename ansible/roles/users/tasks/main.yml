@@ -3,11 +3,16 @@
   register: data_dir
   ignore_errors: true
 
+- name: Install sudo package
+  community.general.pacman:
+    name: sudo
+    state: present
+
 - name: Allow sudo group to perform sudo commands
   lineinfile:
     path: /etc/sudoers
-    regexp: "^#\s+(%sudo ALL=.+)$"
-    line: "\g<1>"
+    regexp: '^#\s+(%sudo ALL=.+)$'
+    line: '\g<1>'
     backrefs: yes
     validate: "/usr/sbin/visudo -cf %s"
 

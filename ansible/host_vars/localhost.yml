@@ -24,7 +24,6 @@ packages:
   - htop
   - make
   - pkg-config
-  - sudo
   - wget
   - zsh
 aur_packages:
