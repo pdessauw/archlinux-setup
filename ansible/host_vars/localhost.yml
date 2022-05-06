@@ -2,8 +2,8 @@ locale: "en_US.UTF-8 UTF-8"
 timezone: "America/New_York"
 hostname: "linux"
 user_name: "user"
-user_password: "pass"
-root_password: "pass"
+user_password: "*****"
+root_password: "*****"
 hosts:
   - 127.0.0.1   localhost
 fonts_packages:
@@ -12,11 +12,12 @@ fonts_packages:
 desktop_packages:
   - xorg-server
   - xfce4
+  - xfce4-whiskermenu-plugin
 packages:
   - binutils
   - curl
   - fakeroot
-  - g++
+  - gcc
   - htop
   - make
   - pkg-config

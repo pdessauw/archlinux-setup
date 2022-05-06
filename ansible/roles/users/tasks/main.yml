@@ -17,12 +17,6 @@
     name: "root"
     password: "{{ root_password | password_hash('sha512') }}"
 
-- name: Add extra content to root's bash_profile
-  shell: "cat {{ data_dir.stdout }}/bash_profile_add >> /root/.bash_profile"
-
-- name: Add extra content to root's bashrc
-  shell: "cat {{ data_dir.stdout }}/rc.sh >> /root/.bashrc"
-
 - name: Create 'sudo' group
   group:
     name: sudo
