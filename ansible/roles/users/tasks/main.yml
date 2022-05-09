@@ -11,7 +11,7 @@
 - name: Allow sudo group to perform sudo commands
   lineinfile:
     path: /etc/sudoers
-    regexp: '^#\s+(%sudo ALL=.+)$'
+    regexp: '^#\s+(%sudo.+)$'
     line: '\g<1>'
     backrefs: yes
     validate: "/usr/sbin/visudo -cf %s"
