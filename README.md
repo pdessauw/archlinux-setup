@@ -2,56 +2,43 @@
 
 Bunch of scripts and instructions to properly setup an Archlinux box.
 
-## VM Configuration
-
-*To be written...*
-
-## Preparing the VM
+## Preparing the machine
 
 ```bash
+# Download the initialization script.
 $ cd /tmp
 $ curl -O -L \
-    https://raw.githubusercontent.com/pdessauw/archlinux-setup/master/prepare.sh
-```
-
-Edit the script parameters to your liking, using `vi prepare.sh`.
-
-```bash
+    https://raw.github.com/pdessauw/archlinux-setup/master/prepare.sh
+# Edit the script parameters.
+$ vi prepare.sh
+# Run the script!
 $ chmod +x prepare.sh
 $ ./prepare.sh
 ```
 
-Once the script has ended, run `arch-chroot /mnt` to login to the newly created 
-machine.
+At the end of the script, the machine will reboot. Log in with the root user and the 
+configured password.
 
 ## Installation
 
-```bash
-$ pacman -S vim git
-$ cd /root
-$ git clone https://github.com/pdessauw/archlinux-setup
-$ cd archlinux-setup
-```
-
-Edit the script parameters to your liking, using `vim install.sh`.
+Move to the folder `/root/archlinux-setup` and check proper internet connectivity.
 
 ```bash
-$ ./install.sh
+$ ping -c3 icann.org
+$ ping -c3 1.1.1.1
 ```
 
-> *Note:*   When the visudo window appears, make sure to uncomment the line 
->           allowing the `sudo` group to perform sudo operations. 
-
-Type `exit` to go back to the installation media and `reboot` to start on the 
-new machine.
-
-## Post-installation
-
-After restarting the machine, log in with your newly created user.
+Next, check that ansible can connect to the local machine (Ansible will be using SSH).
 
 ```bash
-$ sudo mv /root/archlinux-setup ~
-$ sudo chown -R $USER:users ~/arch-setup
-$ cd ~/arch-setup
-$ ./post.sh
+$ ansible -m ping localhost -i ./ansible/hosts
 ```
+
+When everything is successful, edit the Ansible playbook variable and run the playbook.
+
+```bash
+$ vi ./ansible/host_vars/localhost.yml
+$ ansible-playbook ./ansible/setup.yml -i ./ansbile/hosts 
+```
+
+Finally, type `reboot` to restart the machine and log in with the newly created user.

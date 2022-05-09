@@ -1,0 +1,35 @@
+locale: "en_US.UTF-8 UTF-8"
+timezone: "America/New_York"
+hostname: "linux"
+user_name: "user"
+user_password: "*****"
+root_password: "*****"
+needed_folders:
+  - /mnt/data
+  - /mnt/cdrom
+hosts:
+  - 127.0.0.1   localhost
+fonts_packages:
+  - noto-fonts
+  - noto-fonts-extra
+desktop_packages:
+  - xorg-server
+  - xfce4
+  - xfce4-whiskermenu-plugin
+packages:
+  - binutils
+  - curl
+  - fakeroot
+  - gcc
+  - htop
+  - make
+  - pkg-config
+  - wget
+  - zsh
+aur_packages:
+  - docker
+  - docker-compose
+  - firefox-developer-edition
+  - jetbrains-toolbox
+  - jmeter
+  - robo3t-bin

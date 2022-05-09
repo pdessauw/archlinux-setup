@@ -1,0 +1,54 @@
+- name: Create variable for script download path
+  shell: "echo $(dirname {{ playbook_dir }})/data"
+  register: data_dir
+  ignore_errors: true
+
+- name: Download install script
+  become: yes
+  become_user: "{{ user_name }}"
+  get_url:
+    url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+    dest: "{{ script_path }}"
+    mode: 0755
+
+- name: Avoid switching to the shell after install
+  become: yes
+  become_user: "{{ user_name }}"
+  lineinfile:
+    path: "{{ script_path }}"
+    search_string: 'exec zsh -l'
+    line: 'exit 0'
+
+- name: Ensure oh-my-zsh directory is not present
+  file:
+    path: "/home/{{ user_name }}/.oh-my-zsh"
+    state: absent
+
+- name: Install oh-my-zsh
+  become: yes
+  become_user: "{{ user_name }}"
+  shell: "sh {{ script_path }}"
+
+- name: Setup theme
+  become: yes
+  become_user: "{{ user_name }}"
+  lineinfile:
+    path: "/home/{{ user_name }}/.zshrc"
+    regexp: '^(ZSH_THEME=).+$'
+    line: '\g<1>"agnoster"'
+    backrefs: yes
+
+- name: Setup extra plugins
+  become: yes
+  become_user: "{{ user_name }}"
+  lineinfile:
+    path: "/home/{{ user_name }}/.zshrc"
+    regexp: '^(plugins=\(.+)\).*$'
+    line: '\g<1> archlinux)'
+    backrefs: yes
+
+- name: Add extra content to user's zshrc
+  shell: |
+    ZSHRC="/home/{{ user_name }}/.zshrc"
+    cat {{ data_dir.stdout }}/rc.sh >> ${ZSHRC}
+    chown {{ user_name }}:users ${ZSHRC}

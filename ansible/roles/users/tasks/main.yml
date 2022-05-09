@@ -1,0 +1,69 @@
+- name: Create variable for data directory
+  shell: "echo $(dirname {{ playbook_dir }})/data"
+  register: data_dir
+  ignore_errors: true
+
+- name: Install sudo package
+  community.general.pacman:
+    name: sudo
+    state: present
+
+- name: Allow sudo group to perform sudo commands
+  lineinfile:
+    path: /etc/sudoers
+    regexp: '^#\s+(%sudo.+)$'
+    line: '\g<1>'
+    backrefs: yes
+    validate: "/usr/sbin/visudo -cf %s"
+
+# Root user configuration
+- name: Change root password
+  user:
+    name: "root"
+    password: "{{ root_password | password_hash('sha512') }}"
+
+# Nobody user configuration (temporary)
+- name: Change nobody user home and shell
+  user:
+    name: nobody
+    home: /tmp
+    shell: /bin/bash
+
+- name: Copy sudoers file to allow nobody to use pacman
+  copy:
+    src: "{{ data_dir.stdout }}/nobody"
+    dest: /etc/sudoers.d/nobody
+    mode: 0440
+
+# Regular user configuration
+- name: Create 'sudo' group
+  group:
+    name: sudo
+    state: present
+
+- name: Create default user
+  user:
+    name: "{{ user_name }}"
+    state: present
+    password: "{{ user_password | password_hash('sha512') }}"
+    shell: /bin/zsh
+    groups:
+      - sudo
+      - users
+
+- name: Add extra content to user's zprofile
+  shell: "cat {{ data_dir.stdout }}/zprofile_add >> /home/{{ user_name }}/.zprofile"
+
+- name: Delete user bash files
+  file:
+    path: "/home/{{ user_name }}/.bash*"
+    state: absent
+
+- name: Create needed directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ user_name }}"
+    group: users
+    mode: 0775
+  loop:  "{{ needed_folders }}"

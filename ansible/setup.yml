@@ -1,0 +1,11 @@
+- hosts: local
+  roles:
+    - locale
+    - clock
+    - hostname
+    - users
+    - packages
+    - fonts
+    - desktop
+    - oh-my-zsh
+    - cleanup

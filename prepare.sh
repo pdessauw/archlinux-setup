@@ -1,13 +1,10 @@
 #!/bin/bash
-# Pre-installation steps for an Archlinux machine.
-#
-# This script is adapted from:
-#   https://wiki.archlinux.org/title/Installation_guide#Pre-installation
-#
+# Script preparing the machine for the Ansible install.
 # ===== Edit the following values =====
 BOOT_SIZE="250MiB"
 SWAP_SIZE="4GiB"
 HDD_PATH="/dev/sda"
+ROOT_PASSWORD="*****"
 
 # ==== DO NOT EDIT  PAST THIS LINE ====
 # -------------------------------------
@@ -36,5 +33,22 @@ mount ${HDD_PATH}1 /mnt/boot
 pacstrap /mnt base linux linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
 
-echo "Configuration finished. Please run 'arch-chroot /mnt' to continue the " \
-  "installation."
+GIT_REPO="/root/archlinux-setup"
+arch-chroot /mnt bash -c """
+  pacman -S --noconfirm vim git
+  git clone https://github.com/pdessauw/archlinux-setup ${GIT_REPO}
+
+  sed -i \
+    -E 's;(ROOT_PASSWORD=\")[^\"]+\";\1${ROOT_PASSWORD}\";' \
+    ${GIT_REPO}/install.d/root.sh
+
+  ${GIT_REPO}/install.sh
+
+  sed -i \
+    -E 's;(ROOT_PASSWORD=\")[^\"]+\";\1*****\";' \
+    ${GIT_REPO}/install.d/root.sh
+"""
+
+echo "Job done! Rebooting in 5secs..."
+sleep 5
+reboot

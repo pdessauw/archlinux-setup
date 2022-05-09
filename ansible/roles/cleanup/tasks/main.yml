@@ -1,0 +1,19 @@
+# Disable nobody user
+- name: Change nobody user home and shell
+  user:
+    name: nobody
+    home: /tmp
+    shell: /usr/bin/nologin
+
+- name: Copy sudoers file to allow nobody to use pacman
+  file:
+    path: /etc/sudoers.d/nobody
+    state: absent
+
+# Finish user home directory setup
+- name: Change user home ownership
+  file:
+    path: "/home/{{ user_name }}"
+    owner: "{{ user_name }}"
+    group: users
+    recurse: yes

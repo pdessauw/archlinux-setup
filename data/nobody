@@ -1,0 +1,2 @@
+# Allow nobody user to use pacman without password
+nobody ALL=(ALL) NOPASSWD: /usr/bin/pacman
