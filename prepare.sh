@@ -35,9 +35,13 @@ arch-chroot /mnt bash -c """
     -E 's;(ROOT_PASSWORD=\")[^\"]+\";\1${ROOT_PASSWORD}\";' \
     ${GIT_REPO}/install.d/root.sh
 
-  ${GIT_REPO}/install-ansible.sh
+  ${GIT_REPO}/install.sh
 
   sed -i \
     -E 's;(ROOT_PASSWORD=\")[^\"]+\";\1*****\";' \
     ${GIT_REPO}/install.d/root.sh
 """
+
+echo "Job done! Rebooting in 5secs..."
+sleep 5
+reboot
