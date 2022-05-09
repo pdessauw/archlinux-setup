@@ -37,7 +37,7 @@ $ ansible -m ping localhost -i ./ansible/hosts
 When everything is successful, edit the Ansible playbook variable and run the playbook.
 
 ```bash
-$ vi ./ansible/host_vars/localhost
+$ vi ./ansible/host_vars/localhost.yml
 $ ansible-playbook ./ansible/setup.yml -i ./ansbile/hosts 
 ```
 
